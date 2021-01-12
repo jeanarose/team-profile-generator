@@ -10,13 +10,106 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+const employeeInfo = [];
+const getEmployeeInfo = () => {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is your manager's name?",
+        name: "managerName",
+      },
+      {
+        type: "input",
+        message: "What is your manager's ID?",
+        name: "managerID",
+      },
+      {
+        type: "input",
+        message: "What is your manager's email?",
+        name: "managerEmail",
+      },
+      {
+        type: "input",
+        message: "What is your manager's office number?",
+        name: "managerOfficeNumber",
+      },
+    //   {
+    //     type: "input",
+    //     message: "What is your intern's name?",
+    //     name: "internName",
+    //   },
+    //   {
+    //     type: "input",
+    //     message: "What is your intern's ID?",
+    //     name: "internID",
+    //   },
+    //   {
+    //     type: "input",
+    //     message: "What is your intern's email?",
+    //     name: "internEmail",
+    //   },
+    //   {
+    //     type: "input",
+    //     message: "What is your intern's office number?",
+    //     name: "internOfficeNumber",
+    //   },
+    //   {
+    //     type: "input",
+    //     message: "What is your engineer's name?",
+    //     name: "engineerName",
+    //   },
+    //   {
+    //     type: "input",
+    //     message: "What is your engineer's ID?",
+    //     name: "engineerID",
+    //   },
+    //   {
+    //     type: "input",
+    //     message: "What is your engineer's email?",
+    //     name: "engineerEmail",
+    //   },
+    //   {
+    //     type: "input",
+    //     message: "What is your engineer's office number?",
+    //     name: "engineerOfficeNumber",
+    //   },
+    //   {
+    //     type: "input",
+    //     message: "What is your your name?",
+    //     name: "yourName",
+    //   },
+    //   {
+    //     type: "input",
+    //     message: "What is your your ID?",
+    //     name: "yourID",
+    //   },
+    //   {
+    //     type: "input",
+    //     message: "What is your your email?",
+    //     name: "yourEmail",
+    //   },
+    //   {
+    //     type: "input",
+    //     message: "What is your your office number?",
+    //     name: "yourOfficeNumber",
+    //   },
+    ])
+    .then((response) => {
+      console.log(response);
+      employeeInfo.push(response);
+      console.log(employeeInfo);
+    });
+};
+
+getEmployeeInfo();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
+// render(employeeInfo);
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
