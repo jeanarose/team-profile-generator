@@ -10,13 +10,10 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
 // Variable to store employee information
 const employeeInfo = [];
 
-// Command-line function to prompt the user with questions
+// Command-line functions to prompt the user with questions that retrieve information about the manager, intern, engineer, and employee.
 const getManagerInfo = () => {
   inquirer
     .prompt([
@@ -39,6 +36,87 @@ const getManagerInfo = () => {
         type: "input",
         message: "What is your manager's office number?",
         name: "managerOfficeNumber",
+      },
+      {
+        type: "list",
+        message: "Would you like to add a new member to your team?",
+        name: "addNewMember",
+        choices: ["Employee", "Engineer", "Intern", "No new members"],
+      },
+    ])
+    .then((response) => {
+      employeeInfo.push(response);
+      if (response.addNewMember === "Employee") {
+        getEmployeeInfo();
+      } else if (response.addNewMember === "Engineer") {
+        getEngineerInfo();
+      } else if (response.addNewMember === "Intern") {
+        getInternInfo();
+      } else {
+        console.log("Your team members have been added!");
+      }
+    });
+};
+
+const getEmployeeInfo = () => {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is your employee's name?",
+        name: "employeeName",
+      },
+      {
+        type: "input",
+        message: "What is your employee's ID?",
+        name: "employeeID",
+      },
+      {
+        type: "input",
+        message: "What is your employee's email?",
+        name: "employeeEmail",
+      },
+      {
+        type: "input",
+        message: "What is your employee's office number?",
+        name: "employeeOfficeNumber",
+      },
+      {
+        type: "list",
+        message: "Would you like to add a new member to your team?",
+        name: "addNewMember",
+        choices: ["Employee", "Engineer", "Intern", "No new members"],
+      },
+    ])
+    .then((response) => {
+      console.log(response);
+      employeeInfo.push(response);
+      console.log(employeeInfo);
+    });
+};
+
+const getEngineerInfo = () => {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is your engineer's name?",
+        name: "engineerName",
+      },
+      {
+        type: "input",
+        message: "What is your engineer's ID?",
+        name: "engineerID",
+      },
+      {
+        type: "input",
+        message: "What is your engineer's email?",
+        name: "engineerEmail",
+      },
+      {
+        type: "input",
+        message: "What is your engineer's office number?",
+        name: "engineerOfficeNumber",
       },
       {
         type: "list",
@@ -77,36 +155,11 @@ const getInternInfo = () => {
         message: "What is your intern's office number?",
         name: "internOfficeNumber",
       },
-    ])
-    .then((response) => {
-      console.log(response);
-      employeeInfo.push(response);
-      console.log(employeeInfo);
-    });
-};
-
-const getEngineerInfo = () => {
-  inquirer
-    .prompt([
       {
-        type: "input",
-        message: "What is your engineer's name?",
-        name: "engineerName",
-      },
-      {
-        type: "input",
-        message: "What is your engineer's ID?",
-        name: "engineerID",
-      },
-      {
-        type: "input",
-        message: "What is your engineer's email?",
-        name: "engineerEmail",
-      },
-      {
-        type: "input",
-        message: "What is your engineer's office number?",
-        name: "engineerOfficeNumber",
+        type: "list",
+        message: "Would you like to add a new member to your team?",
+        name: "addNewMember",
+        choices: ["Employee", "Engineer", "Intern", "No new members"],
       },
     ])
     .then((response) => {
@@ -116,36 +169,7 @@ const getEngineerInfo = () => {
     });
 };
 
-const getEmployeeInfo = () => {
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        message: "What is your your name?",
-        name: "yourName",
-      },
-      {
-        type: "input",
-        message: "What is your your ID?",
-        name: "yourID",
-      },
-      {
-        type: "input",
-        message: "What is your your email?",
-        name: "yourEmail",
-      },
-      {
-        type: "input",
-        message: "What is your your office number?",
-        name: "yourOfficeNumber",
-      },
-    ])
-    .then((response) => {
-      console.log(response);
-      employeeInfo.push(response);
-      console.log(employeeInfo);
-    });
-};
+getManagerInfo();
 
 // When the app starts, you have to call a functio0n that asks who the manager is
 // Once you're done with that, inside the .then, then you have to call another function which will be a function
