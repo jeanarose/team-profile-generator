@@ -1,3 +1,4 @@
+// Imports
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -26,6 +27,7 @@ const addMember = () => {
       },
     ])
     .then((response) => {
+      // Conditional to check which team member the user chose, if any
       if (response.addNewMember === "Employee") {
         getEmployeeInfo();
       } else if (response.addNewMember === "Engineer") {
@@ -35,9 +37,11 @@ const addMember = () => {
       } else {
         console.log("Your team members have been added!");
         if (fs.existsSync("./output")) {
+          // If an output directory exists, render employees
           const renderEmployees = render(employees);
           fs.writeFileSync(outputPath, renderEmployees, "utf-8");
         } else {
+          // If an output directory does not exist, create one and render employees 
           fs.mkdir("./output", function (err) {
             if (err) {
               console.log(err);
@@ -78,13 +82,16 @@ const getManagerInfo = () => {
       },
     ])
     .then((response) => {
+      // Call function to add a member and render employees
       addMember();
+      // Create a new manager with the user's responses
       const manager = new Manager(
         response.managerName,
         response.managerID,
         response.managerEmail,
         response.managerOfficeNumber
       );
+      // Put the new manager into the employees array
       employees.push(manager);
     });
 };
@@ -110,12 +117,15 @@ const getEmployeeInfo = () => {
       },
     ])
     .then((response) => {
+      // Call function to add a member and render employees
       addMember();
+      // Create a new employee with the user's responses
       const employee = new Employee(
         response.employeeName,
         response.employeeID,
         response.employeeEmail
       );
+      // Put the new employee into the employees array
       employees.push(employee);
     });
 };
@@ -146,13 +156,16 @@ const getEngineerInfo = () => {
       },
     ])
     .then((response) => {
+      // Call function to add a member and render employees
       addMember();
+      // Create a new engineer with the user's responses
       const engineer = new Engineer(
         response.engineerName,
         response.engineerID,
         response.engineerEmail,
         response.engineerGitHub
       );
+      // Put the new engineer into the employees array
       employees.push(engineer);
     });
 };
@@ -183,39 +196,24 @@ const getInternInfo = () => {
       },
     ])
     .then((response) => {
+      // Call function to add a member and render employees
       addMember();
+      // Create a new intern with the user's responses
       const intern = new Intern(
         response.internName,
         response.internID,
         response.internEmail,
         response.internSchool
       );
+      // Put the new intern into the employees array
       employees.push(intern);
     });
 };
 
+// Function to initialize app
 const init = () => {
   getManagerInfo();
 };
 
+// Initialize app
 init();
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
