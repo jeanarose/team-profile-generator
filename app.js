@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const Employee = require("./lib/Employee");
 
 // Variable to store employee information
 const employees = [];
@@ -54,6 +55,7 @@ const getManagerInfo = () => {
         getInternInfo();
       } else {
         console.log("Your team members have been added!");
+        const renderEmployees = render(employees);
       }
     });
 };
@@ -94,6 +96,7 @@ const getEmployeeInfo = () => {
         getInternInfo();
       } else {
         console.log("Your team members have been added!");
+        const renderEmployees = render(employees);
       }
     });
 };
@@ -139,6 +142,7 @@ const getEngineerInfo = () => {
         getInternInfo();
       } else {
         console.log("Your team members have been added!");
+        const renderEmployees = render(employees);
       }
     });
 };
@@ -175,7 +179,8 @@ const getInternInfo = () => {
       },
     ])
     .then((response) => {
-      employeeInfo.push(response);
+      const intern = new Intern(response.internName, response.internID, response.internEmail, response.internSchool)
+      employees.push(intern);
       if (response.addNewMember === "Employee") {
         getEmployeeInfo();
       } else if (response.addNewMember === "Engineer") {
@@ -184,21 +189,21 @@ const getInternInfo = () => {
         getInternInfo();
       } else {
         console.log("Your team members have been added!");
+        const renderEmployees = render(employees);
+        fs.writeFileSync(outputPath, renderEmployees, "utf-8");
       }
     });
 };
 
 const init = () => {
-  getManagerInfo();
-}
+  getInternInfo();
+};
 
 init();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
-
-render(employees);
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
