@@ -13,7 +13,7 @@ const render = require("./lib/htmlRenderer");
 // Variable to store employee information
 const employeeInfo = [];
 
-// Command-line functions to prompt the user with questions that retrieve information about the manager, intern, engineer, and employee.
+// Function to get manager information (name, ID, email, and office number)
 const getManagerInfo = () => {
   inquirer
     .prompt([
@@ -58,6 +58,7 @@ const getManagerInfo = () => {
     });
 };
 
+// Function to get employee information (name, ID, and email)
 const getEmployeeInfo = () => {
   inquirer
     .prompt([
@@ -97,6 +98,7 @@ const getEmployeeInfo = () => {
     });
 };
 
+// Function to get engineer information (name, ID, and GitHub username)
 const getEngineerInfo = () => {
   inquirer
     .prompt([
@@ -141,6 +143,7 @@ const getEngineerInfo = () => {
     });
 };
 
+// Function to get intern information (name, ID, email, and school)
 const getInternInfo = () => {
   inquirer
     .prompt([
