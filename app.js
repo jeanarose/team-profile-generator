@@ -89,9 +89,16 @@ const getEmployeeInfo = () => {
       },
     ])
     .then((response) => {
-      console.log(response);
       employeeInfo.push(response);
-      console.log(employeeInfo);
+      if (response.addNewMember === "Employee") {
+        getEmployeeInfo();
+      } else if (response.addNewMember === "Engineer") {
+        getEngineerInfo();
+      } else if (response.addNewMember === "Intern") {
+        getInternInfo();
+      } else {
+        console.log("Your team members have been added!");
+      }
     });
 };
 
@@ -126,9 +133,16 @@ const getEngineerInfo = () => {
       },
     ])
     .then((response) => {
-      console.log(response);
       employeeInfo.push(response);
-      console.log(employeeInfo);
+      if (response.addNewMember === "Employee") {
+        getEmployeeInfo();
+      } else if (response.addNewMember === "Engineer") {
+        getEngineerInfo();
+      } else if (response.addNewMember === "Intern") {
+        getInternInfo();
+      } else {
+        console.log("Your team members have been added!");
+      }
     });
 };
 
@@ -163,9 +177,16 @@ const getInternInfo = () => {
       },
     ])
     .then((response) => {
-      console.log(response);
       employeeInfo.push(response);
-      console.log(employeeInfo);
+      if (response.addNewMember === "Employee") {
+        getEmployeeInfo();
+      } else if (response.addNewMember === "Engineer") {
+        getEngineerInfo();
+      } else if (response.addNewMember === "Intern") {
+        getInternInfo();
+      } else {
+        console.log("Your team members have been added!");
+      }
     });
 };
 
