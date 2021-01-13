@@ -23,25 +23,23 @@ const addMember = () => {
         type: "list",
         message: "Would you like to add a new member to your team?",
         name: "addNewMember",
-        choices: ["Employee", "Engineer", "Intern", "No new members"],
+        choices: ["Engineer", "Intern", "No new members"],
       },
     ])
     .then((response) => {
       // Conditional to check which team member the user chose, if any
-      if (response.addNewMember === "Employee") {
-        getEmployeeInfo();
-      } else if (response.addNewMember === "Engineer") {
+      if (response.addNewMember === "Engineer") {
         getEngineerInfo();
       } else if (response.addNewMember === "Intern") {
         getInternInfo();
       } else {
         console.log("Your team members have been added!");
+        // If an output directory exists, render employees
         if (fs.existsSync("./output")) {
-          // If an output directory exists, render employees
           const renderEmployees = render(employees);
           fs.writeFileSync(outputPath, renderEmployees, "utf-8");
         } else {
-          // If an output directory does not exist, create one and render employees 
+          // If an output directory does not exist, create one and render employees
           fs.mkdir("./output", function (err) {
             if (err) {
               console.log(err);
@@ -82,7 +80,7 @@ const getManagerInfo = () => {
       },
     ])
     .then((response) => {
-      // Call function to add a member and render employees
+      // Ask if the user wants to add a member, then render employees
       addMember();
       // Create a new manager with the user's responses
       const manager = new Manager(
@@ -93,40 +91,6 @@ const getManagerInfo = () => {
       );
       // Put the new manager into the employees array
       employees.push(manager);
-    });
-};
-
-// Function to get employee information (name, ID, and email)
-const getEmployeeInfo = () => {
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        message: "What is your employee's name?",
-        name: "employeeName",
-      },
-      {
-        type: "input",
-        message: "What is your employee's ID?",
-        name: "employeeID",
-      },
-      {
-        type: "input",
-        message: "What is your employee's email?",
-        name: "employeeEmail",
-      },
-    ])
-    .then((response) => {
-      // Call function to add a member and render employees
-      addMember();
-      // Create a new employee with the user's responses
-      const employee = new Employee(
-        response.employeeName,
-        response.employeeID,
-        response.employeeEmail
-      );
-      // Put the new employee into the employees array
-      employees.push(employee);
     });
 };
 
@@ -156,7 +120,7 @@ const getEngineerInfo = () => {
       },
     ])
     .then((response) => {
-      // Call function to add a member and render employees
+      // Ask if the user wants to add a member, then render employees
       addMember();
       // Create a new engineer with the user's responses
       const engineer = new Engineer(
@@ -196,7 +160,7 @@ const getInternInfo = () => {
       },
     ])
     .then((response) => {
-      // Call function to add a member and render employees
+      // Ask if the user wants to add a member, then render employees
       addMember();
       // Create a new intern with the user's responses
       const intern = new Intern(
