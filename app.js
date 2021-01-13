@@ -77,11 +77,6 @@ const getEmployeeInfo = () => {
         name: "employeeEmail",
       },
       {
-        type: "input",
-        message: "What is your employee's office number?",
-        name: "employeeOfficeNumber",
-      },
-      {
         type: "list",
         message: "Would you like to add a new member to your team?",
         name: "addNewMember",
@@ -122,8 +117,8 @@ const getEngineerInfo = () => {
       },
       {
         type: "input",
-        message: "What is your engineer's office number?",
-        name: "engineerOfficeNumber",
+        message: "What is your engineer's GitHub username?",
+        name: "engineerGitHub",
       },
       {
         type: "list",
@@ -166,8 +161,8 @@ const getInternInfo = () => {
       },
       {
         type: "input",
-        message: "What is your intern's office number?",
-        name: "internOfficeNumber",
+        message: "Where does your intern go to school?",
+        name: "internSchool",
       },
       {
         type: "list",
@@ -192,15 +187,11 @@ const getInternInfo = () => {
 
 getManagerInfo();
 
-// When the app starts, you have to call a functio0n that asks who the manager is
-// Once you're done with that, inside the .then, then you have to call another function which will be a function
-// that asks what they want to do next? (add a manger, employee, etc.)
-// if the answer engineer, call engineer function, etc.
-
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
-// render(employeeInfo);
+
+render(employeeInfo);
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
