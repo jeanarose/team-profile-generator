@@ -14,6 +14,44 @@ const Employee = require("./lib/Employee");
 // Variable to store employee information
 const employees = [];
 
+// Function to ask if the user wants to add a new member
+const addMember = () => {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "Would you like to add a new member to your team?",
+        name: "addNewMember",
+        choices: ["Employee", "Engineer", "Intern", "No new members"],
+      },
+    ])
+    .then((response) => {
+      if (response.addNewMember === "Employee") {
+        getEmployeeInfo();
+      } else if (response.addNewMember === "Engineer") {
+        getEngineerInfo();
+      } else if (response.addNewMember === "Intern") {
+        getInternInfo();
+      } else {
+        console.log("Your team members have been added!");
+        if (fs.existsSync("./output")) {
+          const renderEmployees = render(employees);
+          fs.writeFileSync(outputPath, renderEmployees, "utf-8");
+        } else {
+          fs.mkdir("./output", function (err) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("New directory successfully created.");
+              const renderEmployees = render(employees);
+              fs.writeFileSync(outputPath, renderEmployees, "utf-8");
+            }
+          });
+        }
+      }
+    });
+};
+
 // Function to get manager information (name, ID, email, and office number)
 const getManagerInfo = () => {
   inquirer
@@ -38,25 +76,16 @@ const getManagerInfo = () => {
         message: "What is your manager's office number?",
         name: "managerOfficeNumber",
       },
-      {
-        type: "list",
-        message: "Would you like to add a new member to your team?",
-        name: "addNewMember",
-        choices: ["Employee", "Engineer", "Intern", "No new members"],
-      },
     ])
     .then((response) => {
-      employeeInfo.push(response);
-      if (response.addNewMember === "Employee") {
-        getEmployeeInfo();
-      } else if (response.addNewMember === "Engineer") {
-        getEngineerInfo();
-      } else if (response.addNewMember === "Intern") {
-        getInternInfo();
-      } else {
-        console.log("Your team members have been added!");
-        const renderEmployees = render(employees);
-      }
+      addMember();
+      const manager = new Manager(
+        response.managerName,
+        response.managerID,
+        response.managerEmail,
+        response.managerOfficeNumber
+      );
+      employees.push(manager);
     });
 };
 
@@ -79,25 +108,15 @@ const getEmployeeInfo = () => {
         message: "What is your employee's email?",
         name: "employeeEmail",
       },
-      {
-        type: "list",
-        message: "Would you like to add a new member to your team?",
-        name: "addNewMember",
-        choices: ["Employee", "Engineer", "Intern", "No new members"],
-      },
     ])
     .then((response) => {
-      employeeInfo.push(response);
-      if (response.addNewMember === "Employee") {
-        getEmployeeInfo();
-      } else if (response.addNewMember === "Engineer") {
-        getEngineerInfo();
-      } else if (response.addNewMember === "Intern") {
-        getInternInfo();
-      } else {
-        console.log("Your team members have been added!");
-        const renderEmployees = render(employees);
-      }
+      addMember();
+      const employee = new Employee(
+        response.employeeName,
+        response.employeeID,
+        response.employeeEmail
+      );
+      employees.push(employee);
     });
 };
 
@@ -125,25 +144,16 @@ const getEngineerInfo = () => {
         message: "What is your engineer's GitHub username?",
         name: "engineerGitHub",
       },
-      {
-        type: "list",
-        message: "Would you like to add a new member to your team?",
-        name: "addNewMember",
-        choices: ["Employee", "Engineer", "Intern", "No new members"],
-      },
     ])
     .then((response) => {
-      employeeInfo.push(response);
-      if (response.addNewMember === "Employee") {
-        getEmployeeInfo();
-      } else if (response.addNewMember === "Engineer") {
-        getEngineerInfo();
-      } else if (response.addNewMember === "Intern") {
-        getInternInfo();
-      } else {
-        console.log("Your team members have been added!");
-        const renderEmployees = render(employees);
-      }
+      addMember();
+      const engineer = new Engineer(
+        response.engineerName,
+        response.engineerID,
+        response.engineerEmail,
+        response.engineerGitHub
+      );
+      employees.push(engineer);
     });
 };
 
@@ -171,32 +181,21 @@ const getInternInfo = () => {
         message: "Where does your intern go to school?",
         name: "internSchool",
       },
-      {
-        type: "list",
-        message: "Would you like to add a new member to your team?",
-        name: "addNewMember",
-        choices: ["Employee", "Engineer", "Intern", "No new members"],
-      },
     ])
     .then((response) => {
-      const intern = new Intern(response.internName, response.internID, response.internEmail, response.internSchool)
+      addMember();
+      const intern = new Intern(
+        response.internName,
+        response.internID,
+        response.internEmail,
+        response.internSchool
+      );
       employees.push(intern);
-      if (response.addNewMember === "Employee") {
-        getEmployeeInfo();
-      } else if (response.addNewMember === "Engineer") {
-        getEngineerInfo();
-      } else if (response.addNewMember === "Intern") {
-        getInternInfo();
-      } else {
-        console.log("Your team members have been added!");
-        const renderEmployees = render(employees);
-        fs.writeFileSync(outputPath, renderEmployees, "utf-8");
-      }
     });
 };
 
 const init = () => {
-  getInternInfo();
+  getManagerInfo();
 };
 
 init();
