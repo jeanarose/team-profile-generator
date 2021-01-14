@@ -3,8 +3,7 @@
 [![license: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
-
-[Team Profile Generator](https://jeanarose.github.io/team-profile-generator) is a command-line app designed to collect data about employees and display the data in the browser.
+[Team Profile Generator](https://jeanarose.github.io/team-profile-generator) is a CLI designed to collect data about employees and generate a team profile based on the user's data. 
 
 ## Table of Contents
 
@@ -15,7 +14,6 @@
 - [Tests](#tests)
 
 ## Installation
-
 1. Go to the [GitHub repository for Team Profile Generator](https://github.com/jeanarose/team-profile-generator).
 2. Click the green **Code** button.
 3. Copy the SSH key.
@@ -23,7 +21,6 @@
 5. Use the command **git clone [insert SSH key URL]** and click **Enter** (_Requires Git_).
 
 ## Usage
-
 Team Profile Manager can be used to add team members to the team page, which is useful for coworkers to gather helpful information for each team member.
 
 ## Credits
@@ -35,7 +32,6 @@ The following sites were used to find code to make Weather Dashboard function pr
 * [Atta:](https://attacomsian.com/blog/nodejs-check-if-directory-exists#:~:text=The%20simplest%20way%20to%20check,existsSync()%20method.&text=The%20existsSync()%20method%20returns,the%20path%20exists%2C%20false%20otherwise.) How to check if a directory exists in Node.js
 * [Coder Rocket Fuel:](https://coderrocketfuel.com/article/create-a-new-directory-in-node-js) Create a new directory in Node.js
 ## License
-
 Copyright (c) 2021 Jeana Rose Mathis
 
 MIT License
@@ -59,11 +55,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Tests
-
-## Questions
-
-If you have any questions, you can contact me at jr.mathis608@gmail.com.
-You can also view my GitHub profile at https://github.com/jeanarose.
 
 ---
 
