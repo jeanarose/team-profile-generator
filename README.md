@@ -3,7 +3,17 @@
 [![license: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
-[Team Profile Generator](https://jeanarose.github.io/team-profile-generator) is a CLI designed to collect data about employees and generate a team profile based on the user's data. 
+[Team Profile Generator](https://jeanarose.github.io/team-profile-generator) is a CLI designed to collect data about employees and generate a team profile based on the user's data. Team Profile Generator is useful for employees to gather helpful information about each team member, such as their name, ID, email, office number, GitHub username, and school. This application utilized several key technologies:
+* `Inquirer` was used to ask the user which team member they wanted to add, followed by subsequent questions such as the team members name and email
+* `Node.js` was used to interact with the command line
+* `Jest` was used to run tests before the application was built to ensure best practices
+* `Classes` and `subclasses` were used to create new employees 
+* `Path` was used to create a file path that can be used to create the `output` directory
+* `fs` was used to render the HTML and check to see if the `output` directory exists
+
+## Team Profile Generator
+![Screenshot of Team Profile webpage.](assets/images/team-profile-screenshot.png)
+<kbd>![Screenshot of Team Profile command line interface.](assets/images/team-profile-generator-screenshot.png)<kbd>
 
 ## Table of Contents
 
@@ -18,10 +28,12 @@
 2. Click the green **Code** button.
 3. Copy the SSH key.
 4. In your terminal, go into the directory that you want to host Team Profile Generator.
-5. Use the command **git clone [insert SSH key URL]** and click **Enter** (_Requires Git_).
+5. Use the command `git clone [insert SSH key URL]` and click **Enter** (_Requires Git_).
+6. Navigate to the Team Profile Generator directory and run `npm install` in the command line.
+7. Type `node app.js` in the command line to run the app.
 
 ## Usage
-Team Profile Manager can be used to add team members to the team page, which is useful for coworkers to gather helpful information for each team member.
+Team Profile Manager can be used to add team members to the team page, which is useful for coworkers to gather helpful information for each team member. 
 
 ## Credits
 The following people contributed to the success of this application. You can view their GitHub profiles by clicking on their names:
