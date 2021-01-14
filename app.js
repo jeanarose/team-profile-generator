@@ -175,6 +175,7 @@ const getInternInfo = () => {
 
 // Function to initialize app
 const init = () => {
+  console.log("Please build your team");
   getManagerInfo();
 };
 
