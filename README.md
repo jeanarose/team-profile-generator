@@ -11,6 +11,8 @@
 * `Path` was used to create a file path that can be used to create the `output` directory
 * `fs` was used to render the HTML and check to see if the `output` directory exists
 
+View a video walk-through of the application here: https://github.com/jeanarose/team-profile-generator
+
 ## Team Profile Generator
 ![Screenshot of Team Profile webpage.](assets/images/team-profile-screenshot.png)
 <kbd>![Screenshot of Team Profile command line interface.](assets/images/team-profile-generator-screenshot.png)<kbd>
@@ -67,7 +69,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Tests
-
+Interested in testing Team Profile Generator? 
+Delete the output folder and run node app.js again. Check to see that an output folder was created.
 ---
 
 © 2020 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
