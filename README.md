@@ -71,6 +71,7 @@ SOFTWARE.
 ## Tests
 Interested in testing Team Profile Generator? 
 Delete the output folder and run node app.js again. Check to see that an output folder was created.
+
 ---
 
 © 2020 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
